@@ -27,7 +27,7 @@ const Task: React.FC<TaskProps> = ({ taskText, onDelete, onEdit }) => {
   };
 
   return (
-    <div className="mb-3 rounded-md bg-[#a8dadc] p-4">
+    <div className="mb-3 rounded-md bg-white p-4">
       {/* Edit task modal */}
       <Modal
         opened={editOpened}

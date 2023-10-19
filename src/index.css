@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Default background color for larger screens */
 body {
-  background: #457b9d;
+  background: #f1faee;
+}
+
+/* Media query for small screens (e.g., screens with a maximum width of 768px) */
+@media (max-width: 768px) {
+  body {
+    background: #1d3557;
+  }
 }

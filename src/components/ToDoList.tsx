@@ -13,12 +13,20 @@ const ToDoList = () => {
     }
   }, []);
 
+  const MAX_WORD_LENGTH = 25;
+
   const AddNewTask = () => {
     if (task !== '') {
-      const newTasks = [...tasks, task];
-      setTasks(newTasks);
-      localStorage.setItem('tasks', JSON.stringify(newTasks));
-      setTask('');
+      if (task.length <= MAX_WORD_LENGTH) {
+        const newTasks = [...tasks, task];
+        setTasks(newTasks);
+        localStorage.setItem('tasks', JSON.stringify(newTasks));
+        setTask('');
+      } else {
+        alert('The word is too long! Please enter a shorter word.');
+      }
+    } else {
+      alert('Please enter a word.');
     }
   };
 
@@ -37,7 +45,7 @@ const ToDoList = () => {
   };
 
   return (
-    <Box maw={750} mx="auto" className="md:mt-20 md:rounded-xl md:bg-[#1d3557] px-10 py-8 md:shadow-xl">
+    <Box maw={750} mx="auto" className="px-10 py-8 md:mt-20 md:rounded-xl md:bg-[#1d3557] md:shadow-xl">
       <div>
         <div className="mb-5 flex justify-center text-white">
           <h1>ToDo List App</h1>
