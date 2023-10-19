@@ -37,7 +37,7 @@ const ToDoList = () => {
   };
 
   return (
-    <Box maw={750} mx="auto" className='pt-6 md:pt-20'>
+    <Box maw={750} mx="auto" className="pt-6 md:pt-20">
       <div className="mb-5">
         <Title order={1}>ToDo List App</Title>
       </div>
