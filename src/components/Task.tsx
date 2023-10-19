@@ -21,29 +21,44 @@ const Task: React.FC<TaskProps> = ({ taskText, onDelete, onEdit }) => {
     closeEdit();
   };
 
+  const handleDelete = () => {
+    onDelete();
+    closeDelete();
+  };
+
   return (
     <div className="mb-3 rounded-md bg-slate-200 p-4">
+      {/* Edit task modal */}
       <Modal
         opened={editOpened}
         onClose={closeEdit}
-        size={window.innerWidth <= 768 ? 'xs' : 'md'}
+        size={window.innerWidth <= 768 ? 'xs' : 'lg'}
         title="Edit Task"
         className="flex h-screen items-center justify-center"
       >
-        <div className="flex items-center justify-center">
-          <Input
-            value={editText}
-            onChange={(e) => setEditText(e.target.value)}
-            size={window.innerWidth <= 768 ? 'sm' : 'md'}
-            placeholder="Edit task"
-          />
-          <Button color="blue" size={window.innerWidth <= 768 ? 'sm' : 'md'} onClick={handleEdit}>
-            Save
-          </Button>
+        <div className="w-full items-center justify-between gap-3 gap-x-3 md:flex">
+          <div className="md:flex-1">
+            <Input
+              value={editText}
+              onChange={(e) => setEditText(e.target.value)}
+              size={window.innerWidth <= 768 ? 'sm' : 'md'}
+              placeholder="Edit task"
+            />
+          </div>
+          <div className="">
+            <Button
+              color="blue"
+              size={window.innerWidth <= 768 ? 'sm' : 'md'}
+              onClick={handleEdit}
+              className="mt-3 w-full md:mt-0"
+            >
+              Save
+            </Button>
+          </div>
         </div>
       </Modal>
 
-      {/* confirm delete task modal */}
+      {/* Confirm delete task modal */}
       <Modal
         opened={deleteOpened}
         onClose={closeDelete}
@@ -53,7 +68,7 @@ const Task: React.FC<TaskProps> = ({ taskText, onDelete, onEdit }) => {
       >
         <div className="flex items-center justify-center">
           {/* Content for the second modal */}
-          <Button color="red" size={window.innerWidth <= 768 ? 'sm' : 'md'} onClick={onDelete}>
+          <Button color="red" size={window.innerWidth <= 768 ? 'sm' : 'md'} onClick={handleDelete}>
             Delete
           </Button>
         </div>
