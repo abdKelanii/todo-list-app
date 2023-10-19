@@ -34,7 +34,7 @@ const Task: React.FC<TaskProps> = ({ taskText, onDelete, onEdit }) => {
         onClose={closeEdit}
         size={window.innerWidth <= 768 ? 'xs' : 'lg'}
         title="Edit Task"
-        className="flex h-screen items-center justify-center"
+        className="flex items-center justify-center"
       >
         <div className="w-full items-center justify-between gap-3 gap-x-3 md:flex">
           <div className="md:flex-1">
@@ -64,7 +64,7 @@ const Task: React.FC<TaskProps> = ({ taskText, onDelete, onEdit }) => {
         onClose={closeDelete}
         size={window.innerWidth <= 768 ? 'xs' : 'md'}
         title="Are you sure you want to delete this task?"
-        className="flex h-screen items-center justify-center"
+        className="flex items-center justify-center"
       >
         <div className="flex items-center justify-center">
           {/* Content for the second modal */}

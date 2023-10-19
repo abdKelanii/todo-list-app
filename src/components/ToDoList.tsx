@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Input, Button, Group, Box, Flex, Title } from '@mantine/core';
+import { Input, Button, Box, Title } from '@mantine/core';
 import Task from './Task';
 
 const ToDoList = () => {
@@ -37,7 +37,7 @@ const ToDoList = () => {
   };
 
   return (
-    <Box maw={750} mx="auto">
+    <Box maw={750} mx="auto" className='pt-6 md:pt-20'>
       <div className="mb-5">
         <Title order={1}>ToDo List App</Title>
       </div>
@@ -53,7 +53,7 @@ const ToDoList = () => {
         />
         <div>
           <Button
-            className='w-[100%] md:w-28 mt-3 md:mt-0'
+            className="mt-3 w-[100%] md:mt-0 md:w-28"
             fullWidth
             variant="filled"
             size={window.innerWidth <= 768 ? 'sm' : 'lg'}

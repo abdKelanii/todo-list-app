@@ -4,7 +4,10 @@ import './index.css';
 import { MantineProvider } from '@mantine/core';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <MantineProvider withNormalizeCSS>
-    <App />
-  </MantineProvider>,
+  <div className='h-screen'>
+    <MantineProvider withNormalizeCSS>
+      <App />
+    </MantineProvider>
+    ,
+  </div>,
 );
