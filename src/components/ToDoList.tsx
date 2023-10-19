@@ -41,14 +41,7 @@ const ToDoList = () => {
       <div className="mb-5">
         <Title order={1}>ToDo List App</Title>
       </div>
-      <Flex
-        mih={50}
-        gap={window.innerWidth <= 768 ? 'sm' : 'md'}
-        justify="space-between"
-        align="center"
-        direction="row"
-        wrap="wrap"
-      >
+      <div className="w-full items-center justify-between gap-3 gap-x-3 md:flex">
         <Input
           variant="filled"
           style={{ flex: 1 }}
@@ -58,18 +51,20 @@ const ToDoList = () => {
           value={task}
           onChange={(e) => setTask(e.target.value)}
         />
-        <Group>
+        <div>
           <Button
+            className='w-[100%] md:w-28 mt-3 md:mt-0'
+            fullWidth
             variant="filled"
-            size={window.innerWidth <= 768 ? 'md' : 'lg'}
+            size={window.innerWidth <= 768 ? 'sm' : 'lg'}
             radius="sm"
             onClick={AddNewTask}
-            style={{ width: 120 }}
           >
             Add
           </Button>
-        </Group>
-      </Flex>
+        </div>
+      </div>
+
       {/* Tasks */}
       <div className="mt-5">
         {tasks.map((taskText, index) => (
