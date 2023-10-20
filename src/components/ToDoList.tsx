@@ -63,7 +63,6 @@ const ToDoList = () => {
     localStorage.setItem('tasks', JSON.stringify(updatedTasks));
   };
 
-
   return (
     <Box maw={750} mx="auto" className="px-10 py-8 md:mt-20 md:rounded-xl md:bg-[#1d3557] md:shadow-xl">
       <div>
