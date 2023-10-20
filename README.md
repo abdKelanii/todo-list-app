@@ -18,6 +18,9 @@ To run the app, follow these simple steps:
 Install project dependencies:
 
 npm install
+
+<br>
+
 Start the development server:
 
 npm run dev
