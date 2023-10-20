@@ -41,3 +41,7 @@ Delete Task: Click the delete icon to remove a task from your list.
 
 Complete Task: Click on a task to mark it as completed. A line-through will appear, indicating task completion.
 
+<br>
+
+![Screenshot 2023-10-21 at 01 18 46](https://github.com/abdKelanii/todo-list-app/assets/92879942/0821a044-078c-4f35-b979-6b3201473ef3)
+
