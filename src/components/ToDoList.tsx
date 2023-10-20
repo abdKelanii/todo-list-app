@@ -13,13 +13,23 @@ const ToDoList = () => {
     }
   }, []);
 
-  const MAX_WORD_LENGTH = 25;
+  const MAX_WORD_LENGTH = 20;
+
+  const valodateWordLength = (newTaskText: string) => {
+    const words = newTaskText.trim().split(' ');
+    const isWordTooLong = words.some((word) => word.length > MAX_WORD_LENGTH);
+
+    if (!isWordTooLong) {
+      return true;
+    } else {
+      alert('One or more words are too long! Please enter shorter words.');
+      return false;
+    }
+  };
 
   const AddNewTask = () => {
     if (task !== '') {
-      const words = task.trim().split(' ');
-      const isWordTooLong = words.some((word) => word.length > MAX_WORD_LENGTH);
-      if (!isWordTooLong) {
+      if (valodateWordLength(task)) {
         const newTask = {
           id: tasks.length > 0 ? tasks[tasks.length - 1].id + 1 : 1,
           taskText: task,
@@ -29,27 +39,27 @@ const ToDoList = () => {
         setTasks(newTasks);
         localStorage.setItem('tasks', JSON.stringify(newTasks));
         setTask('');
-      } else {
-        alert('One or more words are too long! Please enter shorter words.');
       }
     } else {
       alert('Please enter a word.');
     }
   };
 
-  const deleteTask = (id: number) => {
-    const updatedTasks = tasks.filter((task) => task.id !== id);
-    setTasks(updatedTasks);
-    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+  const editTask = (id: number, newText: string) => {
+    if (valodateWordLength(newText)) {
+      const updatedTasks = tasks.map((task) => {
+        if (task.id === id) {
+          return { ...task, taskText: newText };
+        }
+        return task;
+      });
+      setTasks(updatedTasks);
+      localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+    }
   };
 
-  const editTask = (id: number, newText: string) => {
-    const updatedTasks = tasks.map((task) => {
-      if (task.id === id) {
-        return { ...task, taskText: newText };
-      }
-      return task;
-    });
+  const deleteTask = (id: number) => {
+    const updatedTasks = tasks.filter((task) => task.id !== id);
     setTasks(updatedTasks);
     localStorage.setItem('tasks', JSON.stringify(updatedTasks));
   };

@@ -88,13 +88,23 @@ const Task: React.FC<TaskProps> = ({ taskText, isCompleted, onDelete, onEdit, on
         <div className="flex flex-col gap-y-1 md:flex-row md:gap-2 md:gap-y-0">
           {/* Edit Button */}
           <div>
-            <Button color="green" size={window.innerWidth <= 768 ? 'xs' : 'md'} onClick={openEdit}>
+            <Button
+              data-testid="edit-button"
+              color="green"
+              size={window.innerWidth <= 768 ? 'xs' : 'md'}
+              onClick={openEdit}
+            >
               <BiSolidEdit />
             </Button>
           </div>
           {/* Delete Button */}
           <div>
-            <Button color="red" size={window.innerWidth <= 768 ? 'xs' : 'md'} onClick={openDelete}>
+            <Button
+              data-testid="delete-button"
+              color="red"
+              size={window.innerWidth <= 768 ? 'xs' : 'md'}
+              onClick={openDelete}
+            >
               <MdDelete />
             </Button>
           </div>
