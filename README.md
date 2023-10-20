@@ -16,9 +16,11 @@ Prettier: Code formatting is maintained with Prettier, ensuring clean and consis
 To run the app, follow these simple steps:
 
 Install project dependencies:
+<br>
 npm install
 <br>
 Start the development server:
+<br>
 npm run dev
 <br>
 This will launch the app in your browser, and you can start managing your tasks right away!
