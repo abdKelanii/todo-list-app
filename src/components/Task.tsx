@@ -6,11 +6,13 @@ import { useDisclosure } from '@mantine/hooks';
 
 interface TaskProps {
   taskText: string;
+  isCompleted: boolean;
   onDelete: () => void;
   onEdit: (newText: string) => void;
+  onComplete: () => void;
 }
 
-const Task: React.FC<TaskProps> = ({ taskText, onDelete, onEdit }) => {
+const Task: React.FC<TaskProps> = ({ taskText, isCompleted, onDelete, onEdit, onComplete }) => {
   const [editOpened, { open: openEdit, close: closeEdit }] = useDisclosure(false);
   const [deleteOpened, { open: openDelete, close: closeDelete }] = useDisclosure(false);
 
@@ -27,7 +29,7 @@ const Task: React.FC<TaskProps> = ({ taskText, onDelete, onEdit }) => {
   };
 
   return (
-    <div className="mb-3 rounded-md bg-white p-4">
+    <div className={`mb-3 rounded-md bg-white p-4`}>
       {/* Edit task modal */}
       <Modal
         opened={editOpened}
@@ -66,7 +68,7 @@ const Task: React.FC<TaskProps> = ({ taskText, onDelete, onEdit }) => {
         title="Are you sure you want to delete this task?"
         className="flex items-center justify-center"
       >
-        <div className="flex items-center justify-center">
+        <div className={`flex items-center justify-center`}>
           {/* Content for the second modal */}
           <Button color="red" size={window.innerWidth <= 768 ? 'sm' : 'md'} onClick={handleDelete}>
             Delete
@@ -75,8 +77,13 @@ const Task: React.FC<TaskProps> = ({ taskText, onDelete, onEdit }) => {
       </Modal>
 
       <div className="flex justify-between">
-        <div className="align-text-left flex items-center">
-          <p className="max-w-xl">{taskText}</p>
+        <div
+          className={`align-text-left flex cursor-pointer items-center ${
+            isCompleted ? 'italic text-green-900 line-through' : ''
+          }`}
+          onClick={onComplete}
+        >
+          <p className={`max-w-xl`}>{taskText}</p>
         </div>
         <div className="flex flex-col gap-y-1 md:flex-row md:gap-2 md:gap-y-0">
           {/* Edit Button */}

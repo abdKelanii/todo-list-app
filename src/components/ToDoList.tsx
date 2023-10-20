@@ -4,7 +4,7 @@ import Task from './Task';
 
 const ToDoList = () => {
   const [task, setTask] = useState<string>('');
-  const [tasks, setTasks] = useState<string[]>([]);
+  const [tasks, setTasks] = useState<{ id: number, taskText: string, isCompleted: boolean }[]>([]);
 
   useEffect(() => {
     const storedTasks = localStorage.getItem('tasks');
@@ -18,7 +18,12 @@ const ToDoList = () => {
   const AddNewTask = () => {
     if (task !== '') {
       if (task.length <= MAX_WORD_LENGTH) {
-        const newTasks = [...tasks, task];
+        const newTask = {
+          id: tasks.length > 0 ? tasks[tasks.length - 1].id + 1 : 1,
+          taskText: task,
+          isCompleted: false,
+        };
+        const newTasks = [...tasks, newTask];
         setTasks(newTasks);
         localStorage.setItem('tasks', JSON.stringify(newTasks));
         setTask('');
@@ -30,19 +35,34 @@ const ToDoList = () => {
     }
   };
 
-  const deleteTask = (index: number) => {
-    const updatedTasks = [...tasks];
-    updatedTasks.splice(index, 1);
+  const deleteTask = (id: number) => {
+    const updatedTasks = tasks.filter(task => task.id !== id);
     setTasks(updatedTasks);
     localStorage.setItem('tasks', JSON.stringify(updatedTasks));
   };
 
-  const editTask = (index: number, newText: string) => {
-    const updatedTasks = [...tasks];
-    updatedTasks[index] = newText;
+  const editTask = (id: number, newText: string) => {
+    const updatedTasks = tasks.map(task => {
+      if (task.id === id) {
+        return { ...task, taskText: newText };
+      }
+      return task;
+    });
     setTasks(updatedTasks);
     localStorage.setItem('tasks', JSON.stringify(updatedTasks));
   };
+
+  const toggleIsCompleted = (taskId: number) => {
+    const updatedTasks = tasks.map(task => {
+      if (task.id === taskId) {
+        return { ...task, isCompleted: !task.isCompleted };
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+  };
+
 
   return (
     <Box maw={750} mx="auto" className="px-10 py-8 md:mt-20 md:rounded-xl md:bg-[#1d3557] md:shadow-xl">
@@ -76,12 +96,14 @@ const ToDoList = () => {
 
         {/* Tasks */}
         <div className="mt-5">
-          {tasks.map((taskText, index) => (
+          {tasks.map((taskObj) => (
             <Task
-              key={index}
-              taskText={taskText}
-              onDelete={() => deleteTask(index)}
-              onEdit={(newText) => editTask(index, newText)}
+              key={taskObj.id}
+              taskText={taskObj.taskText}
+              isCompleted={taskObj.isCompleted}
+              onDelete={() => deleteTask(taskObj.id)}
+              onEdit={(newText) => editTask(taskObj.id, newText)}
+              onComplete={() => toggleIsCompleted(taskObj.id)}
             />
           ))}
         </div>
