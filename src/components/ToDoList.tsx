@@ -4,7 +4,7 @@ import Task from './Task';
 
 const ToDoList = () => {
   const [task, setTask] = useState<string>('');
-  const [tasks, setTasks] = useState<{ id: number, taskText: string, isCompleted: boolean }[]>([]);
+  const [tasks, setTasks] = useState<{ id: number; taskText: string; isCompleted: boolean }[]>([]);
 
   useEffect(() => {
     const storedTasks = localStorage.getItem('tasks');
@@ -17,7 +17,9 @@ const ToDoList = () => {
 
   const AddNewTask = () => {
     if (task !== '') {
-      if (task.length <= MAX_WORD_LENGTH) {
+      const words = task.trim().split(' ');
+      const isWordTooLong = words.some((word) => word.length > MAX_WORD_LENGTH);
+      if (!isWordTooLong) {
         const newTask = {
           id: tasks.length > 0 ? tasks[tasks.length - 1].id + 1 : 1,
           taskText: task,
@@ -28,7 +30,7 @@ const ToDoList = () => {
         localStorage.setItem('tasks', JSON.stringify(newTasks));
         setTask('');
       } else {
-        alert('The word is too long! Please enter a shorter word.');
+        alert('One or more words are too long! Please enter shorter words.');
       }
     } else {
       alert('Please enter a word.');
@@ -36,13 +38,13 @@ const ToDoList = () => {
   };
 
   const deleteTask = (id: number) => {
-    const updatedTasks = tasks.filter(task => task.id !== id);
+    const updatedTasks = tasks.filter((task) => task.id !== id);
     setTasks(updatedTasks);
     localStorage.setItem('tasks', JSON.stringify(updatedTasks));
   };
 
   const editTask = (id: number, newText: string) => {
-    const updatedTasks = tasks.map(task => {
+    const updatedTasks = tasks.map((task) => {
       if (task.id === id) {
         return { ...task, taskText: newText };
       }
@@ -53,7 +55,7 @@ const ToDoList = () => {
   };
 
   const toggleIsCompleted = (taskId: number) => {
-    const updatedTasks = tasks.map(task => {
+    const updatedTasks = tasks.map((task) => {
       if (task.id === taskId) {
         return { ...task, isCompleted: !task.isCompleted };
       }
