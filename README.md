@@ -11,5 +11,5 @@ Features:
 To run the app, run the following commands
 
 npm install
-<hr>
+<br>
 npm run dev
