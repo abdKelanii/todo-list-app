@@ -76,7 +76,11 @@ const ToDoList = () => {
   };
 
   return (
-    <Box maw={750} mx="auto" className="px-10 py-8 md:mt-20 md:rounded-xl md:bg-[#1d3557] md:shadow-xl">
+    <Box
+      maw={750}
+      mx="auto"
+      className="px-5 py-8 md:mt-20 md:rounded-xl md:bg-[#1d3557] md:px-10 md:shadow-xl"
+    >
       <div>
         <div className="mb-5 flex justify-center text-white">
           <h1>ToDo List App</h1>
