@@ -3,6 +3,12 @@ A feature-rich ToDo list application built with modern web technologies. This ap
 
 <br>
 
+## The demo of the project
+
+https://todo-list-app-react-test.netlify.app/
+
+<br>
+
 ## Key Features
 Mantine UI: The app leverages the Mantine UI library to create a visually appealing and user-friendly interface.
 React 18: Powered by the latest version of React, the app benefits from improved performance and concurrent rendering capabilities.
